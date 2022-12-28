@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.33027.164
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "presentacion-pokedex", "presentacion-pokedex\presentacion-pokedex.csproj", "{F5FC128A-2829-4733-9CB3-4D59B6658325}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "dominio", "dominio\dominio.csproj", "{A9A52D32-7463-4202-8DEC-C61FDA7B9196}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "controlador", "controlador\controlador.csproj", "{C3A61F7D-23BE-4ACD-AB32-3606C49D0C65}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{F5FC128A-2829-4733-9CB3-4D59B6658325}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5FC128A-2829-4733-9CB3-4D59B6658325}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5FC128A-2829-4733-9CB3-4D59B6658325}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9A52D32-7463-4202-8DEC-C61FDA7B9196}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9A52D32-7463-4202-8DEC-C61FDA7B9196}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9A52D32-7463-4202-8DEC-C61FDA7B9196}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9A52D32-7463-4202-8DEC-C61FDA7B9196}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3A61F7D-23BE-4ACD-AB32-3606C49D0C65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3A61F7D-23BE-4ACD-AB32-3606C49D0C65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3A61F7D-23BE-4ACD-AB32-3606C49D0C65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3A61F7D-23BE-4ACD-AB32-3606C49D0C65}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
