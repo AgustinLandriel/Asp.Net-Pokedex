@@ -17,7 +17,8 @@ namespace presentacion_pokedex
         {
            
             PokemonNegocio negocio = new PokemonNegocio();
-            dgvPokemon.DataSource = negocio.listarConSP();
+            Session.Add("ListaPokemon", negocio.listarConSP());
+            dgvPokemon.DataSource = Session["ListaPokemon"];
             dgvPokemon.DataBind();
 
         }

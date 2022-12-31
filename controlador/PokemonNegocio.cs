@@ -14,7 +14,7 @@ namespace controlador
 
         public List<Pokemon> getPokemon()
         {
-           
+
 
             try
             {
@@ -37,14 +37,14 @@ namespace controlador
                     aux.Descripcion = (string)datos.Lector["descripcion"];
 
                     //Si los datos son nulos no los leo
-                    if(!(datos.Lector["urlImagen"] is DBNull))
-                    aux.UrlImagen = (string)datos.Lector["urlImagen"];
+                    if (!(datos.Lector["urlImagen"] is DBNull))
+                        aux.UrlImagen = (string)datos.Lector["urlImagen"];
                     aux.Tipo = new Elemento();
                     aux.Tipo.IdElemento = (int)datos.Lector["IdTipo"];
                     aux.Tipo.Descripcion = (string)datos.Lector["Tipo"];
                     aux.Debilidad = new Elemento();
                     aux.Debilidad.IdElemento = (int)datos.Lector["IdDebilidad"];
-                    aux.Debilidad.Descripcion = (string) datos.Lector["Debilidad"];
+                    aux.Debilidad.Descripcion = (string)datos.Lector["Debilidad"];
 
                     listaPokemon.Add(aux);
                 }
@@ -68,13 +68,13 @@ namespace controlador
 
             try
             {
-               /* string consulta = @"SELECT p.id,numero,nombre,p.descripcion,urlImagen,e.descripcion as Tipo, d.descripcion as Debilidad,idTipo,IdDebilidad 
-                                 from POKEMONS as p
-                                 inner join ELEMENTOS e 
-                                 on ( p.IdTipo = e.Id)
-                                 inner join elementos d 
-                                 on(p.IdDebilidad = d.Id) 
-                                 WHERE p.activo = 1";*/
+                /* string consulta = @"SELECT p.id,numero,nombre,p.descripcion,urlImagen,e.descripcion as Tipo, d.descripcion as Debilidad,idTipo,IdDebilidad 
+                                  from POKEMONS as p
+                                  inner join ELEMENTOS e 
+                                  on ( p.IdTipo = e.Id)
+                                  inner join elementos d 
+                                  on(p.IdDebilidad = d.Id) 
+                                  WHERE p.activo = 1";*/
 
                 datos.setSP("storedListar");
                 datos.abrirConexion();
@@ -119,7 +119,7 @@ namespace controlador
 
             try
             {
-                datos.setQuery("INSERT INTO POKEMONS (numero,nombre,descripcion, UrlImagen,idTipo,IdDebilidad) values ("+pokemon.Numero+",'" + pokemon.Nombre + "','" + pokemon.Descripcion + "','"+ pokemon.UrlImagen+"',@IdTipo,@IdDebilidad)");
+                datos.setQuery("INSERT INTO POKEMONS (numero,nombre,descripcion, UrlImagen,idTipo,IdDebilidad) values (" + pokemon.Numero + ",'" + pokemon.Nombre + "','" + pokemon.Descripcion + "','" + pokemon.UrlImagen + "',@IdTipo,@IdDebilidad)");
                 datos.setVariables("@IdTipo", pokemon.Tipo.IdElemento);
                 datos.setVariables("@IdDebilidad", pokemon.Debilidad.IdElemento);
                 datos.commitConsulta();
@@ -135,6 +135,33 @@ namespace controlador
             }
         }
 
+        public void agregarPokemonSP(Pokemon pokemon)
+        {
+
+            try
+            {
+                //Llamo a la query de sp
+                datos.setSP("sp_altaPokemon");
+                //Seteo Parametros
+                datos.setVariables("@numero", pokemon.Numero);
+                datos.setVariables("@nombre", pokemon.Nombre);
+                datos.setVariables("@descripcion", pokemon.Descripcion);
+                datos.setVariables("@urlimagen", pokemon.UrlImagen);
+                datos.setVariables("@IdTipo", pokemon.Tipo.IdElemento);
+                datos.setVariables("@IdDebilidad", pokemon.Debilidad.IdElemento);
+               // datos.setVariables("@IdEvolucion", null);
+                datos.commitConsulta();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
         public void modificarPokemon(Pokemon pokemon)
         {
             try
@@ -199,7 +226,7 @@ namespace controlador
             }
         }
 
-        public List<Pokemon> filtroAvanzado(string campo,string criterio,string filtro)
+        public List<Pokemon> filtroAvanzado(string campo, string criterio, string filtro)
         {
             List<Pokemon> listaFiltrada = new List<Pokemon>();
 
@@ -214,7 +241,7 @@ namespace controlador
                                  WHERE p.activo = 1 and ";
 
 
-                if(campo == "Número")
+                if (campo == "Número")
                 {
                     switch (criterio)
                     {
@@ -275,7 +302,7 @@ namespace controlador
             catch (Exception ex)
             {
 
-                throw ex ;
+                throw ex;
             }
             finally
             {

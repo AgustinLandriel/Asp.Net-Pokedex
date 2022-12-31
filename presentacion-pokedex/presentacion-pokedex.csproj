@@ -67,13 +67,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="AgregarPokemon.aspx" />
     <Content Include="Default.aspx" />
     <Content Include="DetallePokemon.aspx" />
+    <Content Include="Error.aspx" />
     <Content Include="Global.asax" />
     <Content Include="ListaPokemon.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AgregarPokemon.aspx.cs">
+      <DependentUpon>AgregarPokemon.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="AgregarPokemon.aspx.designer.cs">
+      <DependentUpon>AgregarPokemon.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -87,6 +96,13 @@
     </Compile>
     <Compile Include="DetallePokemon.aspx.designer.cs">
       <DependentUpon>DetallePokemon.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Error.aspx.designer.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
