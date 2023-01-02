@@ -41,6 +41,9 @@
                     </div>
                     <div class="mt-3 p-3 ">
                         <asp:Button Text="Agregar" CssClass="btn btn-primary" ID="btnAgregar" OnClick="btnAgregar_Click" runat="server" />
+                        <asp:Button Text="Modificar" CssClass="btn btn-warning" ID="btnModificar" OnClick="btnAgregar_Click" runat="server" />
+                        <asp:Button Text="Eliminar" CssClass="btn btn-danger" ID="btnEliminar" OnClick="btnEliminar_Click" runat="server" />
+                        <asp:Button Text="Eliminar Logico" CssClass="btn btn-danger" ID="btnEliminarLogico" OnClick="btnEliminarLogico_Click" runat="server" />
                         <a href="ListaPokemon.aspx" class="btn btn-light mx-2">Cancelar</a>
                     </div>
                 </div>

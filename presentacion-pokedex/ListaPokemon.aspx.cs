@@ -29,5 +29,13 @@ namespace presentacion_pokedex
             dgvPokemon.PageIndex = e.NewPageIndex;
             dgvPokemon.DataBind();
         }
+
+        protected void dgvPokemon_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //string id = ((Button)sender).CommandArgument;
+            string id = dgvPokemon.SelectedDataKey.Value.ToString();
+            Response.Redirect("AgregarPokemon.aspx?id=" + id);
+
+        }
     }
 }

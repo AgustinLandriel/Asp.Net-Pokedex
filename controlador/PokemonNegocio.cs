@@ -188,6 +188,32 @@ namespace controlador
 
         }
 
+        public void modificarPokemonSP(Pokemon pokemon)
+        {
+            try
+            {
+                //datos.setQuery("UPDATE POKEMONS set numero = @numero,nombre=@nombre,descripcion = @descripcion,urlImagen = @urlimagen,IdTipo = @IdTipo,IdDebilidad=@IdDebilidad WHERE id = @id");
+                datos.setSP("SP_MODIFICAR");
+                datos.setVariables("@numero", pokemon.Numero);
+                datos.setVariables("@nombre", pokemon.Nombre);
+                datos.setVariables("@descripcion", pokemon.Descripcion);
+                datos.setVariables("@urlimagen", pokemon.UrlImagen);
+                datos.setVariables("@IdTipo", pokemon.Tipo.IdElemento);
+                datos.setVariables("@IdDebilidad", pokemon.Debilidad.IdElemento);
+                datos.setVariables("@Id", pokemon.Id);
+                datos.commitConsulta();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
         public void eliminarFisicamente(int id)
         {
             try
@@ -207,11 +233,50 @@ namespace controlador
             }
 
         }
+
+        public void eliminarFisicamenteSP ( int id)
+        {
+            try
+            {
+                // datos.setQuery("DELETE FROM POKEMONS WHERE id = @id");
+                datos.setSP("SP_ELIMINAR");
+                datos.setVariables("@id", id);
+                datos.commitConsulta();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
         public void eliminarLogico(int id)
         {
             try
             {
                 datos.setQuery("UPDATE POKEMONS set activo = 0 WHERE id = @id");
+                datos.setVariables("@id", id);
+                datos.commitConsulta();
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            finally
+            {
+                datos.cerrarConexion();
+            }
+        }
+
+        public void eliminarLogicoSP (int id)
+        {
+            try
+            {
+                datos.setSP("SP_EliminarLogico");
                 datos.setVariables("@id", id);
                 datos.commitConsulta();
             }
