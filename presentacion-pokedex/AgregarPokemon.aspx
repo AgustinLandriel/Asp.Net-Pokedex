@@ -23,11 +23,13 @@
                         <!-- Descripcion -->
                         <asp:Label Text="Descripcion" ID="lblDescripcion" CssClass="form-label" runat="server" />
                         <asp:TextBox ID="textDescripcion" TextMode="MultiLine" CssClass="form-control" runat="server" />
+
                     </div>
                     <div class="mt-3">
                         <!-- URL -->
                         <asp:Label Text="Imágen" ID="lblImagen" CssClass="form-label" runat="server" />
                         <asp:TextBox ID="textImagen" CssClass="form-control" AutoPostBack="true" OnTextChanged="textImagen_TextChanged" runat="server" />
+                    
                     </div>
                     <div class="mt-3">
                         <!-- Tipo -->
@@ -42,13 +44,22 @@
                     <div class="mt-3 p-3 ">
                         <asp:Button Text="Agregar" CssClass="btn btn-primary" ID="btnAgregar" OnClick="btnAgregar_Click" runat="server" />
                         <asp:Button Text="Modificar" CssClass="btn btn-warning" ID="btnModificar" OnClick="btnAgregar_Click" runat="server" />
-                        <asp:Button Text="Eliminar" CssClass="btn btn-danger" ID="btnEliminar" OnClick="btnEliminar_Click" runat="server" />
-                        <asp:Button Text="Eliminar Logico" CssClass="btn btn-danger" ID="btnEliminarLogico" OnClick="btnEliminarLogico_Click" runat="server" />
+                        <asp:Button Text="Eliminar" CssClass="btn btn-danger" ID="btnCheckEliminar" OnClick="btnCheckEliminar_Click" runat="server" />
+                        <%if (Confirmar)
+                            {%>
+                        <div class ="mt-3">
+                            <asp:CheckBox ID="checkConfirmar" Text="Confirmar eliminación" runat="server" />
+                            <asp:Button Text="Eliminar" CssClass="btn btn-outline-danger" ID="btnEliminar" OnClick="btnEliminar_Click" runat="server" />
+                        </div>
+                        <%}%>
+                        <asp:Button Text="Desactivar pokemon" CssClass="btn btn-outline-danger" ID="btnEliminarLogico" OnClick="btnEliminarLogico_Click" runat="server" />
+
                         <a href="ListaPokemon.aspx" class="btn btn-light mx-2">Cancelar</a>
                     </div>
                 </div>
                 <div class="col d-flex justify-content-center align-items-center">
-                    <img src="<%:urlImagen %>" alt="Pokemon" class="h-auto w-auto" />
+                    <asp:Image ImageUrl="https://developers.elementor.com/docs/assets/img/elementor-placeholder-image.png" 
+                        runat="server" ID="imgPokemon" Width="60%" />
                 </div>
             </div>
 

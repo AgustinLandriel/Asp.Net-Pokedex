@@ -12,8 +12,10 @@ namespace presentacion_pokedex
     public partial class AgregarPokemon : System.Web.UI.Page
     {
         public string urlImagen { get; set; }
+        public bool Confirmar { get; set; }
         protected void Page_Load(object sender, EventArgs e)
         {
+            Confirmar = false;
 
             try
             {
@@ -38,7 +40,7 @@ namespace presentacion_pokedex
                 }
 
                 //Si el parametro que me viene por id es no es nulo, se modifica
-                if (Request.QueryString["id"] != null)
+                if (Request.QueryString["id"] != null & !IsPostBack)
                 {
                     int id = int.Parse(Request.QueryString["id"].ToString());
 
@@ -46,19 +48,33 @@ namespace presentacion_pokedex
 
                     Pokemon pokemon = ((List<Pokemon>)Session["ListaPokemon"]).Find(x => x.Id == id);
 
+                    //guardo pokemon en session
+                    Session.Add("pokemonEstado", pokemon);
+
                     textNumero.Text = pokemon.Numero.ToString();
                     textNombre.Text = pokemon.Nombre;
                     textDescripcion.Text = pokemon.Descripcion;
                     textImagen.Text = pokemon.UrlImagen;
                     ddlTipo.SelectedValue = pokemon.Tipo.IdElemento.ToString();
                     ddlDebilidad.SelectedValue = pokemon.Debilidad.IdElemento.ToString();
+                    textImagen_TextChanged(sender, e); // fuerzo el evento
+
                     btnAgregar.Visible = false;
+
+                    //configurar acciones
+                    if (!pokemon.Activo)
+                    {
+                        btnEliminarLogico.Text = "Reactivar";
+
+                    }
+
                 }
                 else
                 {
+                    btnCheckEliminar.Visible = false;
                     btnModificar.Visible = false;
-                    btnEliminar.Visible = false;
                     btnEliminarLogico.Visible = false;
+
                 }
             }
             catch (Exception ex)
@@ -73,11 +89,11 @@ namespace presentacion_pokedex
         {
             try
             {
-                urlImagen = textImagen.Text;
+                imgPokemon.ImageUrl = textImagen.Text;
             }
             catch (Exception)
             {
-                urlImagen = "http://atrilco.com/wp-content/uploads/2017/11/ef3-placeholder-image.jpg";
+                imgPokemon.ImageUrl = "http://atrilco.com/wp-content/uploads/2017/11/ef3-placeholder-image.jpg";
             }
         }
 
@@ -97,8 +113,9 @@ namespace presentacion_pokedex
                 pokemon.Debilidad = new Elemento();
                 pokemon.Debilidad.IdElemento = int.Parse(ddlDebilidad.SelectedValue);
 
-                if (Request.QueryString["id"] != null )
+                if (Request.QueryString["id"] != null)
                 {
+                    pokemon.Id = int.Parse(Request.QueryString["id"].ToString());
                     negocio.modificarPokemonSP(pokemon);
                 }
                 else
@@ -119,16 +136,18 @@ namespace presentacion_pokedex
         {
             try
             {
-                PokemonNegocio negocio = new PokemonNegocio();
-                int id = int.Parse(Request.QueryString["id"].ToString());
+                if (checkConfirmar.Checked)
+                {
 
-                negocio.eliminarFisicamenteSP(id);
-
-                Response.Redirect("ListaPokemon.aspx",false);
+                    PokemonNegocio negocio = new PokemonNegocio();
+                    int id = int.Parse(Request.QueryString["id"].ToString());
+                    negocio.eliminarFisicamenteSP(id);
+                    Response.Redirect("ListaPokemon.aspx", false);
+                }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
-                
+
                 Response.Redirect("Error.aspx");
 
             }
@@ -138,16 +157,25 @@ namespace presentacion_pokedex
         {
             try
             {
+                Pokemon seleccionado = (Pokemon)Session["pokemonEstado"];
                 PokemonNegocio negocio = new PokemonNegocio();
-                int id = int.Parse(Request.QueryString["id"].ToString());
-                negocio.eliminarLogicoSP(id);
+
+                //int id = int.Parse(Request.QueryString["id"].ToString());
+                negocio.eliminarLogicoSP(seleccionado.Id, !seleccionado.Activo);
                 Response.Redirect("ListaPokemon.aspx", false);
+
             }
             catch (Exception)
             {
 
                 Response.Redirect("Error.aspx");
             }
+        }
+
+        protected void btnCheckEliminar_Click(object sender, EventArgs e)
+        {
+            Confirmar = true;
+            btnCheckEliminar.Visible = false;
         }
     }
 }

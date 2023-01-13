@@ -12,19 +12,22 @@ namespace controlador
         AccesoDatos datos = new AccesoDatos();
         List<Pokemon> listaPokemon = new List<Pokemon>();
 
-        public List<Pokemon> getPokemon()
+        public List<Pokemon> getPokemon(string id = "")
         {
-
-
             try
             {
-                datos.setQuery(@"SELECT p.id,numero,nombre,p.descripcion,urlImagen,e.descripcion as Tipo, d.descripcion as Debilidad,idTipo,IdDebilidad 
+                string consulta = @"SELECT p.id,numero,nombre,p.descripcion,urlImagen,e.descripcion as Tipo, d.descripcion as Debilidad,idTipo,IdDebilidad 
                                  from POKEMONS as p
                                  inner join ELEMENTOS e 
                                  on ( p.IdTipo = e.Id)
                                  inner join elementos d 
                                  on(p.IdDebilidad = d.Id) 
-                                 WHERE p.activo = 1");
+                                 WHERE p.activo = 1 ";
+                datos.setQuery(consulta);
+                if(id != null)
+                {
+                    consulta += "and p.id = " + id;
+                }
 
                 datos.abrirConexion();
 
@@ -97,7 +100,7 @@ namespace controlador
                     aux.Debilidad = new Elemento();
                     aux.Debilidad.IdElemento = (int)datos.Lector["IdDebilidad"];
                     aux.Debilidad.Descripcion = (string)datos.Lector["Debilidad"];
-
+                    aux.Activo = (bool)datos.Lector["activo"];
                     listaFiltrada.Add(aux);
                 }
 
@@ -272,12 +275,13 @@ namespace controlador
             }
         }
 
-        public void eliminarLogicoSP (int id)
+        public void eliminarLogicoSP (int id, bool activo = false)
         {
             try
             {
                 datos.setSP("SP_EliminarLogico");
                 datos.setVariables("@id", id);
+                datos.setVariables("@activo", activo);
                 datos.commitConsulta();
             }
             catch (Exception ex)
@@ -291,19 +295,19 @@ namespace controlador
             }
         }
 
-        public List<Pokemon> filtroAvanzado(string campo, string criterio, string filtro)
+        public List<Pokemon> filtroAvanzado(string campo, string criterio, string filtro,string estado)
         {
             List<Pokemon> listaFiltrada = new List<Pokemon>();
 
             try
             {
-                string consulta = @"SELECT p.id,numero,nombre,p.descripcion,urlImagen,e.descripcion as Tipo, d.descripcion as Debilidad,idTipo,IdDebilidad 
+                string consulta = @"SELECT p.id,numero,nombre,p.descripcion,urlImagen,e.descripcion as Tipo, d.descripcion as Debilidad,idTipo,IdDebilidad,p.activo 
                                  from POKEMONS as p
                                  inner join ELEMENTOS e 
                                  on ( p.IdTipo = e.Id)
                                  inner join elementos d 
                                  on(p.IdDebilidad = d.Id) 
-                                 WHERE p.activo = 1 and ";
+                                 WHERE ";
 
 
                 if (campo == "Número")
@@ -321,7 +325,7 @@ namespace controlador
                             break;
                     }
                 }
-                else
+                else if(campo == "Nombre")
                 {
                     switch (criterio)
                     {
@@ -335,7 +339,30 @@ namespace controlador
                             consulta += "nombre like '%" + filtro + "%'"; // '%filtro%'
                             break;
                     }
+                } else
+                {
+                    switch (criterio)
+                    {
+                        case "Empieza con":
+                            consulta += "e.descripcion like '" + filtro + "%'"; // 'filtro%'
+                            break;
+                        case "Termina con":
+                            consulta += "e.descripcion like '%" + filtro + "'"; // '%filtro'
+                            break;
+                        default:
+                            consulta += "e.descripcion '%" + filtro + "%'"; // '%filtro%'
+                            break;
+                    }
                 }
+
+                //Compruebo el estado de activo
+
+                if (estado == "Activo")
+                    consulta += " And p.activo = 1";
+                else if (estado == "Inactivo")
+                    consulta += " And p.activo = 0";
+
+
 
                 datos.setQuery(consulta);
                 datos.abrirConexion();
@@ -358,7 +385,7 @@ namespace controlador
                     aux.Debilidad = new Elemento();
                     aux.Debilidad.IdElemento = (int)datos.Lector["IdDebilidad"];
                     aux.Debilidad.Descripcion = (string)datos.Lector["Debilidad"];
-
+                    aux.Activo = (bool)datos.Lector["Activo"];
                     listaFiltrada.Add(aux);
                 }
 

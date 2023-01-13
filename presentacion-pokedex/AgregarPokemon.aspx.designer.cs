@@ -150,6 +150,24 @@ namespace presentacion_pokedex
         protected global::System.Web.UI.WebControls.Button btnModificar;
 
         /// <summary>
+        /// Control btnCheckEliminar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCheckEliminar;
+
+        /// <summary>
+        /// Control checkConfirmar.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBox checkConfirmar;
+
+        /// <summary>
         /// Control btnEliminar.
         /// </summary>
         /// <remarks>
@@ -166,5 +184,14 @@ namespace presentacion_pokedex
         /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnEliminarLogico;
+
+        /// <summary>
+        /// Control imgPokemon.
+        /// </summary>
+        /// <remarks>
+        /// Campo generado automáticamente.
+        /// Para modificarlo, mueva la declaración del campo del archivo del diseñador al archivo de código subyacente.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgPokemon;
     }
 }
