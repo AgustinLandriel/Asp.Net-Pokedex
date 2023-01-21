@@ -24,7 +24,19 @@
                         <li class="nav-item">
                             <a class="nav-link" href="ListaPokemon.aspx">Lista Pokemons</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Favoritos</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Mi perfil</a>
+                        </li>
                     </ul>
+                </div>
+                <div class="d-flex">
+                    <a href="Login.aspx" class="btn btn-success me-2">Login</a>
+                    <a href="Registro.aspx" class="btn btn-primary m-auto">Registrarse</a>
+                    <asp:Image ID="imgAvatar" Style="height: 40px; width: 40px; border-radius: 50%;"
+                        runat="server" />
                 </div>
             </div>
         </nav>
