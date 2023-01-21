@@ -13,7 +13,7 @@ namespace controlador
         {
             // Mando la session traineeActivo por parametro
 
-            Trainee trainee = user != null ? (Trainee)user : null;  //Si no es nulo, creo la instancia del usuario
+            Trainee trainee = user != null ? (Trainee) user : null;  //Si no es nulo, creo la instancia del usuario
 
             if (trainee != null && trainee.Id != 0) //Compruebo si no es nulo y su id es distinto a cero 
             {

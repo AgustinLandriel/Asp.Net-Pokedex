@@ -29,7 +29,7 @@
       <div class="row row-cols-1 row-cols-md-2 g-4">
     <asp:Repeater runat="server" ID="repPokemon" >
         <ItemTemplate>
-            <div class="col">
+            <div class="col-6">
                     <div class="card text-black d-flex"> 
                         <img src="<%#Eval("UrlImagen")%>" class=" align-self-center w-50 h-50" alt="...">
                         <div class="card-body">

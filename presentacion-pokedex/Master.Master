@@ -10,34 +10,48 @@
 </head>
 <body class="bg-dark text-white">
     <form id="form1" runat="server">
-        <nav class="navbar navbar-expand-lg bg-light">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="Default.aspx">Pokedex Web</a>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid text-white">
+                <a class="navbar-brand text-warning" href="Default.aspx">Pokedex Web</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="Default.aspx">Home</a>
+                            <a class="nav-link active text-white" aria-current="page" href="Default.aspx">Home</a>
+                        </li>
+                        <%if (activo)
+                            { %>
+                        <li class="nav-item">
+                            <a class="nav-link active text-white" href="ListaPokemon.aspx">Lista Pokemons</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active " href="ListaPokemon.aspx">Lista Pokemons</a>
+                            <a class="nav-link active text-white" href="Favoritos.aspx">Favoritos</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link active" href="Favoritos.aspx">Favoritos</a>
+                            <a class="nav-link active text-white" href="MiPerfil.aspx">Mi perfil</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link active" href="MiPerfil.aspx">Mi perfil</a>
-                        </li>
+                        <%} %>
                     </ul>
                 </div>
-                <div class="d-flex">
-                    <a href="Login.aspx" class="btn btn-success me-2">Login</a>
-                    <a href="Registro.aspx" class="btn btn-primary m-auto">Registrarse</a>
-                    <asp:Image ID="imgAvatar" Style="height: 40px; width: 40px; border-radius: 50%;"
-                        runat="server" />
-                </div>
+
+                <%if (!activo)
+                    {
+                %>
+                    <div class="d-flex">
+                        <a href="Login.aspx" class="btn btn-success me-2">Login</a>
+                        <a href="Registro.aspx" class="btn btn-primary m-auto">Registrarse</a>
+                    </div>
+                <% }
+                    else
+                    { %>
+                        <asp:Button Text="Cerrar sesión" ID="btnCerrarSesion" CssClass="btn btn-danger mx-3" OnClick="btnCerrarSesion_Click" runat="server" />
+                        <asp:Image ImageUrl="https://media.istockphoto.com/id/1214428300/fr/vectoriel/photo-de-profil-par-d%C3%A9faut-avatar-photo-placeholder-illustration-de-vecteur.jpg?s=170667a&w=0&k=20&c=9K-62VJQaFHs-jl3eqQZ4xPMTb7sJuB6QxRGzJ0DP2w=" 
+                            ID="Image" 
+                            Style="height: 40px; width: 40px; border-radius: 50%;"
+                            runat="server" />
+                <%} %>
             </div>
         </nav>
         <div class="container p-5">
