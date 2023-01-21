@@ -14,10 +14,17 @@ namespace presentacion_pokedex
     {
 
         public bool FiltroAvanzado { get; set; }
+
+
         protected void Page_Load(object sender, EventArgs e)
         {
             FiltroAvanzado = checkFiltroAvanzado.Checked;
-            
+
+            if (!Seguridad.esAdmin(Session["traineeActivo"])) // Compruebo si es admin o no para poder ver la pagina.
+            {
+                Session.Add("error", "No tenes permisos para ver esta pagina. Necesitas ser administrador.");
+                Response.Redirect("Error.aspx");
+            }
 
             if (!IsPostBack)
             {
