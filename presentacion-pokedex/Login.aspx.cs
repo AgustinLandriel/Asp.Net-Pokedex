@@ -27,7 +27,7 @@ namespace presentacion_pokedex
             {
                 trainee.Email = txtEmail.Text;
                 trainee.Pass = txtPassword.Text;
-
+               
                if(traineeNegocio.Login(trainee))
                 {
                     Session.Add("traineeActivo", trainee);
@@ -36,12 +36,12 @@ namespace presentacion_pokedex
                 else
                 {
                     Session.Add("error", "Email y/o contraseña incorrecta");
-                    Response.Redirect("Error.aspx");
+                    Response.Redirect("Error.aspx",false);
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                Session.Add("error", ex.ToString());
                 Response.Redirect("Error.aspx");
             }
         }

@@ -18,16 +18,34 @@ namespace presentacion_pokedex
             {
                 if (!Seguridad.sesionActiva(Session["traineeActivo"])) // Si no hay una sesion activa te mando a login
                 {
-                    
                     Response.Redirect("Login.aspx", false);
                 }
             }
 
             //Compruebo si esta iniciado sesion 
             if (Seguridad.sesionActiva(Session["traineeActivo"]))
+            {
                 activo = true;
+
+                // cargo la imagen del avatar sino es nula
+
+                if ( ((Trainee)Session["traineeActivo"]).ImagenPerfil != null ){
+
+                    imgAvatar.ImageUrl = "~/Images/" + ((Trainee)Session["TraineeActivo"]).ImagenPerfil;
+                }
+                else
+                {
+                    imgAvatar.ImageUrl = "https://media.istockphoto.com/id/1214428300/fr/vectoriel/photo-de-profil-par-d%C3%A9faut-avatar-photo-placeholder-illustration-de-vecteur.jpg?s=170667a&w=0&k=20&c=9K-62VJQaFHs-jl3eqQZ4xPMTb7sJuB6QxRGzJ0DP2w=";
+
+                }
+            }
             else
+            {
                 activo = false;
+            }
+
+
+
 
            
         }

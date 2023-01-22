@@ -47,8 +47,8 @@
                     else
                     { %>
                         <asp:Button Text="Cerrar sesión" ID="btnCerrarSesion" CssClass="btn btn-danger mx-3" OnClick="btnCerrarSesion_Click" runat="server" />
-                        <asp:Image ImageUrl="https://media.istockphoto.com/id/1214428300/fr/vectoriel/photo-de-profil-par-d%C3%A9faut-avatar-photo-placeholder-illustration-de-vecteur.jpg?s=170667a&w=0&k=20&c=9K-62VJQaFHs-jl3eqQZ4xPMTb7sJuB6QxRGzJ0DP2w=" 
-                            ID="Image" 
+                        <asp:Image 
+                            ID="imgAvatar" 
                             Style="height: 40px; width: 40px; border-radius: 50%;"
                             runat="server" />
                 <%} %>

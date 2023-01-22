@@ -30,11 +30,15 @@ namespace presentacion_pokedex
                 user.Pass = txtPassword.Text;
 
                 //Recupero el ID cuando se registra.
-                int id = traineeNegocio.CrearUser(user);
+                user.Id = traineeNegocio.CrearUser(user);
+
+                //Cuando se registra, creo la sesion asi entra automaticamente.
+                Session.Add("traineeActivo", user);
+
 
                 //Envio un email de bienvenida
-                emailService.armarCorreo(user.Email, "Bienvenida Trainner", "Hola, te damos la bienvenida a la aplicacion");
-                emailService.enviarCorreo();
+              /* emailService.armarCorreo(user.Email, "Bienvenida Trainner", "Hola, te damos la bienvenida a la aplicacion");
+                emailService.enviarCorreo();*/
                 Response.Redirect("Default.aspx",false);
             }
             catch (Exception)
