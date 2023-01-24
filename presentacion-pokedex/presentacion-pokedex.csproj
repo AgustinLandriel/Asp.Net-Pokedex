@@ -73,6 +73,7 @@
     <Content Include="Error.aspx" />
     <Content Include="Favoritos.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="Images\favicon.png" />
     <Content Include="ListaPokemon.aspx" />
     <Content Include="Login.aspx" />
     <Content Include="MiPerfil.aspx" />
@@ -167,7 +168,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Images\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

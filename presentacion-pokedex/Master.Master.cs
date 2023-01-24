@@ -12,24 +12,28 @@ namespace presentacion_pokedex
     public partial class Master : System.Web.UI.MasterPage
     {
         public bool activo { get; set; }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            if ( !(Page is Login || Page is Default || Page is Registro)) //Habilito solo las paginas de Logear,Default y Registro para los usuarios sin cuenta
+            if (!(Page is Login || Page is Default || Page is Registro)) //Habilito solo las paginas de Logear,Default y Registro para los usuarios sin cuenta
             {
                 if (!Seguridad.sesionActiva(Session["traineeActivo"])) // Si no hay una sesion activa te mando a login
                 {
                     Response.Redirect("Login.aspx", false);
                 }
-            }
 
-            //Compruebo si esta iniciado sesion 
+            }
             if (Seguridad.sesionActiva(Session["traineeActivo"]))
             {
                 activo = true;
 
-                // cargo la imagen del avatar sino es nula
+                //Si esta logeado
+                Trainee trainee = (Trainee)Session["traineeActivo"];
+                lblUser.Text = trainee.Email;
 
-                if ( ((Trainee)Session["traineeActivo"]).ImagenPerfil != null ){
+                //Si el usuario activo  tiene imagen de perfil se la cargo sino le pongo un placeholder
+                if (((Trainee)Session["traineeActivo"]).ImagenPerfil != null)
+                {
 
                     imgAvatar.ImageUrl = "~/Images/" + ((Trainee)Session["TraineeActivo"]).ImagenPerfil;
                 }
@@ -44,17 +48,13 @@ namespace presentacion_pokedex
                 activo = false;
             }
 
-
-
-
-           
         }
 
         protected void btnCerrarSesion_Click(object sender, EventArgs e)
         {
             //Cerrar session
             Session.Clear();
-            Response.Redirect("Login.aspx",false);
+            Response.Redirect("Login.aspx", false);
         }
     }
 }

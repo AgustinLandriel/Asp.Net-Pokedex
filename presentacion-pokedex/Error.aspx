@@ -19,7 +19,7 @@
                     <br />
                     <div class="d-flex justify-content-center">
                      <asp:Label Text="" ID="lblError" runat="server" CssClass="mx-3" />
-                    <a href="Default.aspx" class="btn btn-primary">Volver</a>
+                    <a href="Login.aspx" class="btn btn-primary">Volver</a>
                     </div>
                 </div>
             </div>
