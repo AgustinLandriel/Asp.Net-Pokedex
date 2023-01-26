@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using dominio;
-using controlador;
+using negocio;
 
 namespace presentacion_pokedex
 {

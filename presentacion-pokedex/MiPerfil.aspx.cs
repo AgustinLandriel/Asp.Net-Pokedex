@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using controlador;
+using negocio;
 using dominio;
 
 namespace presentacion_pokedex
@@ -44,6 +44,13 @@ namespace presentacion_pokedex
 
             try
             {
+
+                Page.Validate(); // Valida la pagina
+                if (!Page.IsValid)
+                {
+                    return; //Si no fue validado el campo, cierra la ejecucion
+                }
+
                 TraineeNegocio negocio = new TraineeNegocio();
                 Trainee user = (Trainee)Session["traineeActivo"];
 

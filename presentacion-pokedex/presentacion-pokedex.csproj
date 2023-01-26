@@ -171,9 +171,9 @@
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\controlador\controlador.csproj">
+    <ProjectReference Include="..\controlador\negocio.csproj">
       <Project>{c3a61f7d-23be-4acd-ab32-3606c49d0c65}</Project>
-      <Name>controlador</Name>
+      <Name>negocio</Name>
     </ProjectReference>
     <ProjectReference Include="..\dominio\dominio.csproj">
       <Project>{a9a52d32-7463-4202-8dec-c61fda7b9196}</Project>
