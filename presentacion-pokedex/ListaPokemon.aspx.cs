@@ -87,14 +87,6 @@ namespace presentacion_pokedex
                 ddlCriterio.Items.Add("Menor a");
 
             }
-            else if (ddlCampo.SelectedItem.Text == "Tipo")
-            {
-                habilitarCampos();
-                ddlCriterio.Items.Add("Fuego");
-                ddlCriterio.Items.Add("Agua");
-                ddlCriterio.Items.Add("Tierra");
-                
-            }
             else if (ddlCampo.SelectedItem.Text == "Nombre")
             {
                 habilitarCampos();

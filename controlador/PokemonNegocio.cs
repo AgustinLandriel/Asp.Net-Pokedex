@@ -24,6 +24,7 @@ namespace negocio
                                  on(p.IdDebilidad = d.Id) 
                                  WHERE p.activo = 1 ";
                 datos.setQuery(consulta);
+
                 if(id != null)
                 {
                     consulta += "and p.id = " + id;
@@ -339,21 +340,7 @@ namespace negocio
                             consulta += "nombre like '%" + filtro + "%'"; // '%filtro%'
                             break;
                     }
-                } else
-                {
-                    switch (criterio)
-                    {
-                        case "Empieza con":
-                            consulta += "e.descripcion like '" + filtro + "%'"; // 'filtro%'
-                            break;
-                        case "Termina con":
-                            consulta += "e.descripcion like '%" + filtro + "'"; // '%filtro'
-                            break;
-                        default:
-                            consulta += "e.descripcion '%" + filtro + "%'"; // '%filtro%'
-                            break;
-                    }
-                }
+                } 
 
                 //Compruebo el estado de activo
 

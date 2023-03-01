@@ -28,14 +28,15 @@
             </div>
             <div class="mb-3">
                 <label class="form-label">Nombre</label>
-                <asp:TextBox runat="server" CssClass="form-control" ID="txtNombre" />
+                <asp:TextBox ClientIDMode="Static" runat="server"  CssClass="form-control" ID="txtNombre" />
                 <asp:RequiredFieldValidator CssClass="text-danger" ErrorMessage="*Nombre es requerido" ControlToValidate="txtNombre" runat="server" />
 
             </div>
             <div class="mb-3">
                 <label class="form-label">Apellido</label>
-                <asp:TextBox ID="txtApellido" runat="server" CssClass="form-control">
+                <asp:TextBox ClientIDMode="Static" ID="txtApellido" runat="server" CssClass="form-control">
                 </asp:TextBox>
+                <asp:RequiredFieldValidator CssClass="text-danger" ErrorMessage="Apellido es requerido" ControlToValidate="txtApellido" runat="server" />
                 <%--<asp:RangeValidator ErrorMessage="Fuera de rango" 
                     ControlToValidate="txtApellido" runat="server" 
                     Type="Integer" MinimumValue="1" MaximumValue="20" />--%>
