@@ -19,7 +19,6 @@ Aplicación web POKEDEX
 - ASP.NET Web Forms
 - C# .NET Framework 4.8
 - Programación orientada a objetos
-- HTML
 - CSS - Bootstrap 
 - Javascript
 - ADO.NET
