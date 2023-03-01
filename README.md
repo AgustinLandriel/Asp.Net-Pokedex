@@ -31,7 +31,7 @@ Aplicación web POKEDEX
 
 ## Vista 
 
-![App Screenshot](https://github.com/AgustinLandriel/screenshots/blob/main/Pokemon%20asp%20img/Home.png?raw=true)
+![App Screenshot](https://github.com/AgustinLandriel/screenshots/blob/main/Pokemon%20asp%20img/Inicio.png?raw=true)
 
 ![Lista Pokemon ](https://github.com/AgustinLandriel/screenshots/blob/main/Pokemon%20asp%20img/Lista%20y%20filtrado.png?raw=true)
 
