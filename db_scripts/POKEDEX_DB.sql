@@ -38,7 +38,7 @@ CREATE TABLE [dbo].[POKEMONS](
 	[Id] [int] IDENTITY(1,1) NOT NULL,
 	[Numero] [int] NULL,
 	[Nombre] [varchar](50) NULL,
-	[Descripcion] [varchar](50) NULL,
+	[Descripcion] [varchar](500) NULL,
 	[UrlImagen] [varchar](300) NULL,
 	[IdTipo] [int] NULL,
 	[IdDebilidad] [int] NULL,
